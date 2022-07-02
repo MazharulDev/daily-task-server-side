@@ -61,6 +61,13 @@ async function run() {
             const task = await completeCollection.find().toArray();
             res.send(task);
         })
+        // complete collection delete
+        app.delete('/complete/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await completeCollection.deleteOne(query);
+            res.send(result);
+        })
     }
     finally {
 
